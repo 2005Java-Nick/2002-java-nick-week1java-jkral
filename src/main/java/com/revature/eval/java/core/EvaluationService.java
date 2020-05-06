@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,15 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String acronym = "";
+		String[] newPhrase = phrase.split("-|\\ ");
+		for (String word : newPhrase) {
+			acronym += word.charAt(0);
+//			System.out.println(acronym);
+		}
+		
+//			System.out.println(acronym);	
+		return acronym;
 	}
 
 	/**
@@ -84,18 +93,30 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
+			
+			if (sideOne == sideTwo && sideTwo == sideThree) {
+				return true;
+			} else {
+				
 			return false;
+		}
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if ((sideOne == sideTwo) || (sideTwo == sideThree)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if ((sideOne != sideTwo) && (sideOne != sideThree) && (sideTwo != sideThree)) {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 
 	}
@@ -117,7 +138,42 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		 String[] oneArray = {"A", "E", "I", "O", "U", "L", "N", "R", "S", "T"}; 
+		 String[] twoArray = {"D", "G"};
+		 String[] threeArray = {"C", "M", "P"};
+		 String[] fourArray = {"F", "H", "V", "W", "Y"};
+		 String[] fiveArray = {"K"};
+		 String[] eightArray = {"J", "X"};
+		 String[] tenArray = {"Q", "Z"};
+		 
+		 int res = 0;
+		 
+		 for (int i = 0; i < string.length(); i++) {
+			 
+			 char checkChar = (Character.toUpperCase(string.charAt(i)));
+			 String checkString = Character.toString(checkChar);
+			 System.out.println(checkChar);
+			 
+			 
+			 if (Arrays.asList(oneArray).contains(checkString)){
+				 res += 1;
+			 } else if (Arrays.asList(twoArray).contains(checkString)){
+				 res += 2;
+			 } else if (Arrays.asList(threeArray).contains(checkString)){
+				 res += 3;
+			 } else if (Arrays.asList(fourArray).contains(checkString)){
+				 res += 4;
+			 } else if (Arrays.asList(fiveArray).contains(checkString)){
+				 res += 5;
+			 } else if (Arrays.asList(eightArray).contains(checkString)){
+				 res += 8;
+			 } else if (Arrays.asList(tenArray).contains(checkString)){
+				 res += 10;
+			 }			 
+			 
+		}		
+		 System.out.println(res);
+		 return res;
 	}
 
 	/**
@@ -167,6 +223,12 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
+		String[] strArray = string.split(" ");
+		Map counterMap = new Map<K, V>
+		for string word : strArray {
+			
+		}
+				
 		return null;
 	}
 
