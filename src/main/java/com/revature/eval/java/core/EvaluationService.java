@@ -2,8 +2,11 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import org.hamcrest.core.StringContains;
 
 public class EvaluationService {
 
@@ -103,7 +106,7 @@ public class EvaluationService {
 		}
 
 		public boolean isIsosceles() {
-			if ((sideOne == sideTwo) || (sideTwo == sideThree)) {
+			if ((sideOne == sideTwo) || (sideTwo == sideThree) || isEquilateral()) {
 				return true;
 			} else {
 				return false;
@@ -152,7 +155,7 @@ public class EvaluationService {
 			 
 			 char checkChar = (Character.toUpperCase(string.charAt(i)));
 			 String checkString = Character.toString(checkChar);
-			 System.out.println(checkChar);
+//			 System.out.println(checkString);
 			 
 			 
 			 if (Arrays.asList(oneArray).contains(checkString)){
@@ -172,7 +175,7 @@ public class EvaluationService {
 			 }			 
 			 
 		}		
-		 System.out.println(res);
+//		 System.out.println(res);
 		 return res;
 	}
 
@@ -208,7 +211,9 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		
+		
 		return null;
 	}
 
@@ -223,11 +228,9 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		String[] strArray = string.split(" ");
-		Map counterMap = new Map<K, V>
-		for string word : strArray {
+		
 			
-		}
+		
 				
 		return null;
 	}
@@ -400,10 +403,31 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	
+	public boolean isPrime(int n) {
+		for (int i = 2; i < n; i++) {
+			if (n % 2  == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
+	
+	public int calculateNthPrime(int i) {
+		
+		int count;
+		int num;
+		
+		for(num = 2, count = 0; count < i; num++) {
+			if(isPrime(num)) {
+				count++;
+			}
+		}
+		
+			return num-1;
+		}
+		
+	
 
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
@@ -496,7 +520,12 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
+		if (string.contains("[a-z)")) {
+			return true;
+		} else {
+		
 		return false;
+	}
 	}
 
 	/**
@@ -509,7 +538,9 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		
+		return given;
 	}
 
 	/**
