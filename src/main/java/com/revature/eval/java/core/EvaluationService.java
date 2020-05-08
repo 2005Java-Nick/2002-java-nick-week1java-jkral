@@ -1,12 +1,15 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 import org.hamcrest.core.StringContains;
+import org.junit.validator.PublicClassValidator;
 
 public class EvaluationService {
 
@@ -212,9 +215,15 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		
+		String cleanString = string.replaceAll("[^0-9]", "");
+			if (cleanString.length() == 10) {
+				return cleanString;
+			}
+			if (cleanString.length() != 10) {
+				throw new IllegalArgumentException();
+			}
 		
-		
-		return null;
+		return cleanString;
 	}
 
 	/**
@@ -229,10 +238,15 @@ public class EvaluationService {
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
 		
-			
+			String[] arr = string.split(" ");
 		
-				
-		return null;
+			HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
+			
+			for (String word : arr) {
+				wordMap.merge(word, 1, Integer::sum);
+			}
+			
+			return wordMap;
 	}
 
 	/**
@@ -332,9 +346,31 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
-		return false;
-	}
-
+		
+		int length = (int) (Math.log10(input) + 1);
+		if (length == 1) {
+			return true;
+		}
+		if (length == 2) {
+			return false;			
+		}
+		
+		int num = input, originalNum, remainder, result = 0;
+        originalNum = num;
+        while (originalNum != 0)
+        {
+            remainder = originalNum % 10;
+            result += Math.pow(remainder, length);
+            originalNum /= 10;
+        }   
+        if(result == num) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
+        }
+  
 	/**
 	 * 10. Compute the prime factors of a given natural number.
 	 * 
@@ -347,7 +383,21 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		ArrayList<Long> primeList = new ArrayList(); 
+		
+		  for(long i = 2; i< l; i++) {
+		         while(l % i == 0) {
+		        	 primeList.add(i);
+		            l = l/i;
+		         }
+		      }
+		      if(l >2) {
+		    	  primeList.add(l);
+		      }
+		   
+		System.out.println(primeList);
+		return primeList;
 	}
 
 	/**
@@ -417,6 +467,11 @@ public class EvaluationService {
 		
 		int count;
 		int num;
+		
+		if (i < 2) {
+			throw new IllegalArgumentException();
+		}
+		
 		
 		for(num = 2, count = 0; count < i; num++) {
 			if(isPrime(num)) {
