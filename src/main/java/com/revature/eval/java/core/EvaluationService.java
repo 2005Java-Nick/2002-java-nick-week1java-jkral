@@ -7,7 +7,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.StringContains;
 import org.junit.validator.PublicClassValidator;
 
@@ -326,6 +329,21 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
+		
+		System.out.println(string);
+		
+		StringBuilder sBuilder = new StringBuilder();	
+		
+		char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+		
+		for (char c : vowels) {
+			if (sBuilder.charAt(0) == c) {
+				sBuilder.append("ay");
+				return sBuilder.toString();
+			}
+		}
+		
+		
 		return null;
 	}
 
@@ -436,6 +454,7 @@ public class EvaluationService {
 
 		public String rotate(String string) {
 			// TODO Write an implementation for this method declaration
+//			System.out.println(key);
 			return null;
 		}
 
@@ -516,6 +535,11 @@ public class EvaluationService {
 		 */
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
+			
+//			string = string.replaceAll(" ", "");
+//			System.out.println(string);
+//			string = string.replaceAll("[^a-zA-Z ]", "");
+			
 			return null;
 		}
 
@@ -555,8 +579,11 @@ public class EvaluationService {
 	 */
 	public boolean isValidIsbn(String string) {
 		// TODO Write an implementation for this method declaration
+//		string = string.replaceAll("-", "");
+		
 		return false;
 	}
+	
 
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
@@ -572,13 +599,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		if (string.contains("[a-z)")) {
+		
+		string = string.toUpperCase().replaceAll("[^A-Z]", "");
+		
+		char[] chars = string.toCharArray();
+		
+		Set<Character> set = new HashSet<Character>();
+		
+		for (int i = 0; i < chars.length; i++) {
+			set.add(chars[i]);
+		}
+
+		if (set.size() == 26) {
 			return true;
 		} else {
+			return false;
+		}
 		
-		return false;
-	}
+		
 	}
 
 	/**
@@ -591,7 +629,7 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		
+//		System.out.println(given);
 		
 		return given;
 	}
@@ -652,6 +690,25 @@ public class EvaluationService {
 	 */
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
+//		System.out.println(string);
+		int numDigits = string.length();		
+		int sum = 0;
+		boolean isSecond = false;
+		
+		for (int i = numDigits - 1; i >= 0; i--) {
+			
+			int digit = string.charAt(i) - '0';
+			
+			if (isSecond == true) {
+				digit = digit * 2;								
+			} else {
+				sum += digit / 10;
+				sum += digit % 10;
+				isSecond = !isSecond;
+			}
+		}
+	
+		
 		return false;
 	}
 
@@ -687,9 +744,8 @@ public class EvaluationService {
 		
 		string = string.replace("?", "");
 		String[] strArr = string.split(" ");
-		System.out.println(strArr[3]);
-		
-			
+//		System.out.println(strArr[3]);
+					
 		int res = 0;
 			
 		switch (strArr[3]) {
@@ -702,7 +758,7 @@ public class EvaluationService {
 		case "divided":
 			res = Integer.parseInt(strArr[2])/Integer.parseInt(strArr[5]);
 		}
-		System.out.println(res);
+//		System.out.println(res);
 		return res;
 	}
 
