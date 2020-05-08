@@ -396,7 +396,7 @@ public class EvaluationService {
 		    	  primeList.add(l);
 		      }
 		   
-		System.out.println(primeList);
+//		System.out.println(primeList);
 		return primeList;
 	}
 
@@ -471,14 +471,12 @@ public class EvaluationService {
 		if (i < 2) {
 			throw new IllegalArgumentException();
 		}
-		
-		
+				
 		for(num = 2, count = 0; count < i; num++) {
 			if(isPrime(num)) {
 				count++;
 			}
-		}
-		
+		}		
 			return num-1;
 		}
 		
@@ -686,7 +684,26 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		string = string.replace("?", "");
+		String[] strArr = string.split(" ");
+		System.out.println(strArr[3]);
+		
+			
+		int res = 0;
+			
+		switch (strArr[3]) {
+		case "plus":
+			res = Integer.parseInt(strArr[2])+Integer.parseInt(strArr[4]);
+		case "minus":
+			res = Integer.parseInt(strArr[2])-Integer.parseInt(strArr[4]);
+		case "multiplied":
+			res = Integer.parseInt(strArr[2])*Integer.parseInt(strArr[5]);
+		case "divided":
+			res = Integer.parseInt(strArr[2])/Integer.parseInt(strArr[5]);
+		}
+		System.out.println(res);
+		return res;
 	}
 
 }
