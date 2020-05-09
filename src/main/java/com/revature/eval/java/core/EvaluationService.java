@@ -555,12 +555,23 @@ public class EvaluationService {
 		 */
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
+			String lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
+			int numAlpha = 26;
+			String encoded = "";
 			
-//			string = string.replaceAll(" ", "");
-//			System.out.println(string);
-//			string = string.replaceAll("[^a-zA-Z ]", "");
-			
-			return null;
+			for (int i = 0; i < string.length(); i++) {
+				char c = string.toLowerCase().charAt(i);
+				if (Character.isDigit(c)) {
+					encoded += string.substring(i,i+1);
+				} else if (Character.isLetter(c)) {
+					int j = lowerAlpha.indexOf(c);
+					encoded += lowerAlpha.substring(numAlpha - j - 1, numAlpha - j);
+				}
+				if (encoded.length() % 6 == 5) {
+					encoded += " ";
+				}
+			}			
+			return encoded;
 		}
 
 		/**
@@ -571,6 +582,7 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
+//			return encode(string.replaceAll(" ", ""));
 			return null;
 		}
 	}
