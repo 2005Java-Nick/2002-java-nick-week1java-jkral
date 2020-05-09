@@ -1,6 +1,10 @@
 package com.revature.eval.java.core;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAmount;
 import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Date;
@@ -292,6 +296,9 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
+			
+			
+			
 			return 0;
 		}
 
@@ -330,7 +337,7 @@ public class EvaluationService {
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
 		
-		System.out.println(string);
+//		System.out.println(string);
 		
 		StringBuilder sBuilder = new StringBuilder();	
 		
@@ -341,8 +348,7 @@ public class EvaluationService {
 				sBuilder.append("ay");
 				return sBuilder.toString();
 			}
-		}
-		
+		}		
 		
 		return null;
 	}
@@ -600,7 +606,7 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		
-		string = string.toUpperCase().replaceAll("[^A-Z]", "");
+	string = string.toUpperCase().replaceAll("[^A-Z]", "");
 		
 		char[] chars = string.toCharArray();
 		
@@ -615,8 +621,7 @@ public class EvaluationService {
 		} else {
 			return false;
 		}
-		
-		
+	
 	}
 
 	/**
@@ -628,10 +633,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-//		System.out.println(given);
+		long giga = 1000000000;
 		
-		return given;
+		if(given.isSupported(ChronoUnit.SECONDS)) {
+			return given.plus(giga, ChronoUnit.SECONDS);
+		}
+		return LocalDateTime.of((LocalDate) given, LocalTime.of(0,0,0,0)).plusSeconds(giga);
+
 	}
 
 	/**
@@ -649,6 +657,9 @@ public class EvaluationService {
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
+		
+//		if (i%set[0]
+		
 		return 0;
 	}
 
