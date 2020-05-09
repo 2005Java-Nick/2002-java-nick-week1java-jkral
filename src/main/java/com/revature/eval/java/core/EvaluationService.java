@@ -291,15 +291,29 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> {
+	static class BinarySearch<T extends Comparable<T>> {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
 			
+			int rhs = sortedList.size();
+			int lhs = 0;
+			int index = rhs/2;
 			
+			while (rhs > lhs) {
+				if (sortedList.get(index).equals(t)) {
+					return index;
+				} else if (t.compareTo(sortedList.get(index)) < 0) {
+					rhs = index;
+					index = rhs/2;
+				} else if (t.compareTo(sortedList.get(index)) > 0) {
+					lhs = index;
+					index = lhs + ((rhs - lhs) / 2);
+				}
+			}
 			
-			return 0;
+			return index;
 		}
 
 		public BinarySearch(List<T> sortedList) {
