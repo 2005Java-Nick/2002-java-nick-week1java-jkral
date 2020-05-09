@@ -582,8 +582,7 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-//			return encode(string.replaceAll(" ", ""));
-			return null;
+			return encode(string).replaceAll(" ", "");
 		}
 	}
 
